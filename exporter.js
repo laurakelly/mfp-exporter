@@ -1,8 +1,9 @@
-/* console.save() from dev tools code snippets 
- * http://bgrins.github.io/devtools-snippets/#console-save
- */
-
 (function(console){
+
+  /* console.save() from dev tools code snippets 
+   * http://bgrins.github.io/devtools-snippets/#console-save
+   */
+
 
   console.save = function(data, filename){
 
@@ -27,21 +28,41 @@
     e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
     a.dispatchEvent(e)
   }
-})(console)
+})(console);
 
 
 (function() {
   var tables = $('table'),
       entries = [],
-      nodes = $('#content').children();
+      nodes = $('#content').children(),
+      months = {"January": 1,
+          "February": 2,
+          "March": 3,
+          "April": 4,
+          "May": 5,
+          "June": 6,
+          "July": 7,
+          "August": 8,
+          "September": 9,
+          "October": 10,
+          "November": 11,
+          "December": 12
+      };
 
   function process_date(node) {
-    var date = node.text().split(' '); 
+    var date = node.text().split(' '),
+        monthName = date[0],
+        month = months[date[0]],
+        day = parseInt(date[1].replace(/\,/g,'')),
+        year = parseInt(date[2]),
+        dateObject = new Date(year, month, day);
 
     return {
-      'month': date[0], 
-      'day': date[1].replace(/\,/g,''), 
-      'year': date[2]
+      'month': month, 
+      'monthName': monthName,
+      'day': day, 
+      'year': year,
+      'ts': dateObject.getTime()
     }
   }
 
@@ -62,6 +83,8 @@
         entry.month = date.month;
         entry.day = date.day;
         entry.year = date.year;
+        entry.monthName = date.monthName;
+        entry.ts = date.ts;
 
         new_entries.push(entry);
       }
