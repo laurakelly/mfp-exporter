@@ -108,6 +108,6 @@
   var json_entries = JSON.stringify(entries),
       date = new Date;
 
-  console.save(json_entries, "mfp-export-" + date.getTime());
+  console.save(json_entries, "mfp-export-" + date.getTime() + ".json");
 
 })();
