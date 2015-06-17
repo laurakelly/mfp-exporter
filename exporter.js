@@ -77,12 +77,12 @@
         var entry = {};
         
         entry.exercise = $(row.children[0]).text();
-        entry.sets = $(row.children[2]).text();
-        entry.reps = $(row.children[3]).text();
-        entry.weight = $(row.children[4]).text().trim();
-        entry.month = date.month;
-        entry.day = date.day;
-        entry.year = date.year;
+        entry.sets = Number($(row.children[2]).text());
+        entry.reps = Number($(row.children[3]).text());
+        entry.weight = Number($(row.children[4]).text().trim());
+        entry.month = Number(date.month);
+        entry.day = Number(date.day);
+        entry.year = Number(date.year);
         entry.monthName = date.monthName;
         entry.ts = date.ts;
 
